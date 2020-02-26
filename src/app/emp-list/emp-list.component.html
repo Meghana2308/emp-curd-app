@@ -1,0 +1,34 @@
+<h2>Employee List</h2>
+<a routerLink='addEmp'>New Employee</a>
+<p *ngIf='!emps && !errMsg'>please wait loading...!</p>
+<p *ngIf='errMsg'>{{errMsg}}</p>
+
+<table *ngIf='emps' cellspacing='10'cellpadding='10'>
+    <thead>
+        <tr>
+        <th>Emp#</th>
+        <th>Name</th>
+        <th>Joined On</th>
+        <th>Basic</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Department</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of emps">
+            <td>{{e.empId}}</td>
+            <td>{{e.firstName}}{{e.lastName}}</td>
+            <td>{{e.joinDate|date:'dd-MM-yyyy'}}</td>
+            <td>{{e.basic}}</td>
+            <td>{{e.mobileNumber}}</td>
+            <td>{{e.email}}</td>
+            <td>{{e.dept}}</td>
+            <td>
+                <a href="#"(click)="delete (e.empId)">DELETE</a>&nbsp;
+                <span></span>
+                <a routerLink="editEmp/{{e.empId}}">EDIT</a>
+                </td>
+        </tr>
+    </tbody>
+</table>
